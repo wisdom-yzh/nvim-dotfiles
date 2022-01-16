@@ -39,6 +39,16 @@ local global_options = {
     t_ut = "",
 }
 
+local global_vars = {
+    mapleader = ","
+}
+
+local function bind_vars(options)
+    for k, v in pairs(options) do
+        vim.g[k] = v
+    end
+end
+
 local function bind_option(options)
     for k, v in pairs(options) do
         if v == true then
@@ -51,6 +61,46 @@ local function bind_option(options)
     end
 end
 
-bind_option(global_options)
+local function bind_tab_mappings()
+    vim.cmd [[
+        map <C-j> :tabp<CR>
+        map <C-k> :tabn<CR>
+    ]]
+end
 
+local function wsl_bind_clipboard()
+    vim.cmd [[
+        if system('uname -r') =~ "microsoft"
+            let s:clip = '/mnt/c/Windows/System32/clip.exe'  " default location
+            if executable(s:clip)
+                augroup WSLYank
+                    autocmd!
+                    autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+                augroup END
+            end
+        end
+    ]]
+end
+
+-- migrate from my old .vimrc
+local function old_filetype_options()
+    vim.cmd [[
+        autocmd Filetype css setlocal ts=2 sts=2 sw=2
+        autocmd Filetype scss setlocal ts=2 sts=2 sw=2
+        autocmd Filetype html setlocal ts=2 sts=2 sw=2
+        autocmd Filetype phtml setlocal ts=2 sts=2 sw=2
+        autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+        autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
+
+        au BufRead,BufNewFile *.{css,less} set ft=css
+        au BufRead,BufNewFile *.{xml,ejs} set ft=html
+        au BufRead,BufNewFile *.vue set ft=vue
+    ]]
+end
+
+bind_option(global_options)
+bind_vars(global_vars)
+bind_tab_mappings()
+wsl_bind_clipboard()
+old_filetype_options()
 return {}
