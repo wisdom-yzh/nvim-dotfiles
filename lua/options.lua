@@ -61,13 +61,6 @@ local function bind_option(options)
     end
 end
 
-local function bind_tab_mappings()
-    vim.cmd [[
-        map <C-j> :tabp<CR>
-        map <C-k> :tabn<CR>
-    ]]
-end
-
 local function wsl_bind_clipboard()
     vim.cmd [[
         if system('uname -r') =~ "microsoft"
@@ -100,7 +93,6 @@ end
 
 bind_option(global_options)
 bind_vars(global_vars)
-bind_tab_mappings()
 wsl_bind_clipboard()
 old_filetype_options()
 return {}

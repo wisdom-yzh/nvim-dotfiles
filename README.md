@@ -9,7 +9,7 @@
 ### install and setup configuration:
 
 ```bash
-git clone https://github.com/wisdom-yzh/nvim_dotfiles ~/.config/nvim
+git clone https://github.com/wisdom-yzh/nvim-dotfiles ~/.config/nvim
 git submodule update --init --recursive
 nvim +PackerSync
 ```

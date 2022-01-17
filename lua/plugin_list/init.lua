@@ -8,6 +8,7 @@ local plugins = {
     "plugin_list.lsp",
     "plugin_list.autocomplete",
     "plugin_list.statusline",
+    "plugin_list.tabline",
     "plugin_list.git",
     "plugin_list.dap",
     "plugin_list.editor",
