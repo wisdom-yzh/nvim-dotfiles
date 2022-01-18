@@ -12,7 +12,8 @@ local plugins = {
     "plugin_list.git",
     "plugin_list.dap",
     "plugin_list.editor",
-    "plugin_list.lint"
+    "plugin_list.lint",
+    "plugin_list.taglist",
 }
 
 _M.load = function (use)
