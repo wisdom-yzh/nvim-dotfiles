@@ -1,18 +1,26 @@
 local vim = vim
 local _M = {}
 
--- TODO: adding regulations for every languages
-_M.load = function (use)
-    use {
-        "rcarriga/nvim-dap-ui",
-        requires = {
-            "mfussenegger/nvim-dap"
-        }
-    }
+local function dapKeyBindings()
+    vim.cmd [[
+        nnoremap <leader>b :lua require('dap').toggle_breakpoint()<CR>
+        nnoremap <leader>r :lua require('dap').continue()<CR>
+        nnoremap <leader><S-r> :lua require('dap').terminate()<CR>:lua require('dapui').toggle()<CR>
+        nnoremap <leader>n :lua require('dap').step_over()<CR>
+        nnoremap <leader>s :lua require('dap').step_into()<CR>
+        nnoremap <leader><S-s> :lua require('dap').step_out()<CR>
+        nnoremap <leader>p :lua require('dap.ui.widgets').hover()<CR>
+    ]]
 end
 
-_M.run = function ()
-    require("dapui").setup({
+local function dapUi()
+    local dap, dapui = require("dap"), require("dapui")
+
+    -- nvim-dap-virtual-text. Show virtual text for current frame
+    vim.g.dap_virtual_text = true
+    dap.defaults.fallback.terminal_win_cmd = "10new"
+
+    dapui.setup({
         icons = { expanded = "▾", collapsed = "▸" },
         mappings = {
             -- Use a table to apply multiple mappings
@@ -25,33 +33,81 @@ _M.run = function ()
         sidebar = {
             -- You can change the order of elements in the sidebar
             elements = {
-            -- Provide as ID strings or tables with "id" and "size" keys
-            {
-                id = "scopes",
-                size = 0.25, -- Can be float or integer > 1
-            },
-            { id = "breakpoints", size = 0.25 },
-            { id = "stacks", size = 0.25 },
-            { id = "watches", size = 00.25 },
+                -- Provide as ID strings or tables with "id" and "size" keys
+                {
+                    id = "scopes",
+                    size = 0.25, -- Can be float or integer > 1
+                },
+                { id = "breakpoints", size = 0.25 },
+                { id = "stacks", size = 0.25 },
+                { id = "watches", size = 00.25 },
             },
             size = 40,
             position = "left", -- Can be "left", "right", "top", "bottom"
         },
         tray = {
             elements = { "repl" },
-            size = 10,
-            position = "bottom", -- Can be "left", "right", "top", "bottom"
+            size = 100,
+            position = "right", -- Can be "left", "right", "top", "bottom"
         },
         floating = {
             max_height = nil, -- These can be integers or a float between 0 and 1.
             max_width = nil, -- Floats will be treated as percentage of your screen.
             border = "single", -- Border style. Can be "single", "double" or "rounded"
             mappings = {
-            close = { "q", "<Esc>" },
+                close = { "q", "<Esc>" },
             },
         },
         windows = { indent = 1 },
     })
+
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+    end
+    dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+    end
+    dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+    end
+end
+
+local function dapInstall()
+    local dap_install = require("dap-install")
+    dap_install.setup({
+        installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+    })
+    local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
+    for _, debugger in ipairs(dbg_list) do
+        dap_install.config(debugger)
+    end
+end
+
+local function dapConfig()
+    local cpp = require('languages/cpp').dap()
+    require('dap').configurations = {
+        c = cpp,
+        cpp = cpp,
+        rust = cpp,
+        go = require('languages/go').dap(),
+        javascript = require('languages/typescript').dap(),
+    }
+end
+
+_M.load = function (use)
+    use {
+        "rcarriga/nvim-dap-ui",
+        "mfussenegger/nvim-dap",
+        "Pocco81/DAPInstall.nvim",
+        "theHamsta/nvim-dap-virtual-text",
+    }
+end
+
+_M.run = function ()
+    dapUi()
+    dapKeyBindings()
+    dapInstall()
+    dapConfig()
 end
 
 return _M

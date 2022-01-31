@@ -56,4 +56,8 @@ _M.lsp = function ()
     }
 end
 
+_M.dap = function ()
+    return {}
+end
+
 return _M
