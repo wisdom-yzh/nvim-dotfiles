@@ -1,12 +1,12 @@
 # My neovim dotfiles
 
-### requirements
+### Requirements
 
 * neovim >= 0.6
 * rg
 * git, unzip, curl, tar, ...
 
-### install and setup configuration:
+### Install and setup configuration:
 
 ```bash
 git clone https://github.com/wisdom-yzh/nvim-dotfiles ~/.config/nvim

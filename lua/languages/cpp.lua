@@ -27,4 +27,15 @@ _M.dap = function ()
     }
 end
 
+_M.lint = function ()
+    return {
+        liners = {
+            'cpplint',
+        },
+        fixers = {
+            'clangformat'
+        }
+    }
+end
+
 return _M

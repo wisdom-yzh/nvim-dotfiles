@@ -10,14 +10,14 @@ _M.lsp = function ()
     settings = {
       Lua = {
         runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
+          -- Tell the language server which version of Lua you"re using (most likely LuaJIT in the case of Neovim)
+          version = "LuaJIT",
           -- Setup your lua path
           path = runtime_path,
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = {"vim"},
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -34,6 +34,13 @@ end
 
 _M.dap = function ()
     return {}
+end
+
+_M.lint = function ()
+    return {
+        linters = {},
+        fixers = { "luafmt" },
+    }
 end
 
 return _M

@@ -41,7 +41,7 @@ _M.run = function ()
                 cmp.TriggerEvent.InsertEnter,
             },
             completeopt = "menuone,noinsert,noselect",
-            keyword_length = 2,
+            keyword_length = 1,
         },
         snippet = {
             expand = function(args)

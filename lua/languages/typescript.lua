@@ -29,4 +29,17 @@ _M.dap = function ()
     }
 end
 
+_M.lint = function ()
+    return {
+        liners = {
+            'eslint',
+            'prettier',
+        },
+        fixers = {
+            'eslint',
+            'prettier',
+        }
+    }
+end
+
 return _M

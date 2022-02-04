@@ -60,4 +60,11 @@ _M.dap = function ()
     return {}
 end
 
+_M.lint = function ()
+    return {
+        linters = { "eslint" },
+        fixers = { "eslint" },
+    }
+end
+
 return _M

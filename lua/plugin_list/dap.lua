@@ -16,7 +16,10 @@ end
 local function dapUi()
     local dap, dapui = require("dap"), require("dapui")
 
+    vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+
     -- nvim-dap-virtual-text. Show virtual text for current frame
+    require("nvim-dap-virtual-text").setup()
     vim.g.dap_virtual_text = true
     dap.defaults.fallback.terminal_win_cmd = "10new"
 
