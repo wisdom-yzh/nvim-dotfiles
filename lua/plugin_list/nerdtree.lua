@@ -14,6 +14,7 @@ _M.run = function ()
     vim.cmd [[
         map <leader><leader> :NERDTreeToggle<CR>
         map <leader>. :NERDTreeFind<CR>
+        nnoremap \d :bp<cr>:bd #<cr>
     ]]
 end
 

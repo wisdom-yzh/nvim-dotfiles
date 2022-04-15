@@ -58,8 +58,11 @@ _M.run = function ()
     -- Register a handler that will be called for all installed servers.
     -- Alternatively, you may also register handlers on specific server instances instead (see example below).
     lsp_installer.on_server_ready(function(server)
-        local opts = lsp_config[server.name].lsp()
-
+        local opts = lsp_config[server.name]
+        if opts ~= nil and opts.lsp ~= nil then
+            opts = opts.lsp()
+        end
+ 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require'cmp_nvim_lsp'.update_capabilities(capabilities)
 
