@@ -8,8 +8,8 @@ _M.load = function (use)
 end
 
 _M.run = function ()
+    vim.g.vista_default_executive = "nvim_lsp"
     vim.cmd [[
-        vim.g.vista_default_executive = "nvim_lsp"
         " map keybindings
         nmap <leader>t :Vista!!<CR>
     ]]

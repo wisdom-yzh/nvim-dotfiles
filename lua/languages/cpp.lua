@@ -33,7 +33,7 @@ _M.lint = function ()
             'cpplint',
         },
         fixers = {
-            'clangformat'
+            'clang-format'
         }
     }
 end
