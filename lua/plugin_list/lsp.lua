@@ -28,6 +28,7 @@ _M.load = function (use)
     use {
         'neovim/nvim-lspconfig',
         'williamboman/nvim-lsp-installer',
+        'lvimuser/lsp-inlayhints.nvim',
     }
 end
 
@@ -62,15 +63,19 @@ _M.run = function ()
         if opts ~= nil and opts.lsp ~= nil then
             opts = opts.lsp()
         end
- 
+
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require'cmp_nvim_lsp'.update_capabilities(capabilities)
 
         if opts then
             -- (optional) Customize the options passed to the server
-            opts.on_attach = function(_, bufnr)
+            opts.on_attach = function(client, bufnr)
                 local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
                 map_lsp_keybindings(buf_set_keymap)
+                -- inlay-hints
+                local ih = require "lsp-inlayhints"
+                ih.setup()
+                ih.on_attach(client, bufnr)
             end
 
             opts.capabilities = capabilities

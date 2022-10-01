@@ -3,16 +3,13 @@ local _M = {}
 
 _M.load = function (use)
     use {
-        "sainnhe/sonokai",
-        { as = "sonokai" }
+        "folke/tokyonight.nvim"
     }
 end
 
 _M.run = function ()
     vim.cmd [[
-        set t_Co=256
-        set background=dark
-        colorscheme sonokai
+        colorscheme tokyonight-day
     ]]
 end
 

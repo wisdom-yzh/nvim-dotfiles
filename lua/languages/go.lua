@@ -1,7 +1,20 @@
 local _M = {}
 
 _M.lsp = function ()
-    return {}
+    return {
+        settings = {
+            gopls = {
+                hints = {
+                    assignVariableTypes = true,
+                    compositeLiteralFields = true,
+                    constantValues = true,
+                    functionTypeParameters = true,
+                    parameterNames = true,
+                    rangeVariableTypes = true,
+                },
+            },
+        },
+    }
 end
 
 _M.dap = function ()

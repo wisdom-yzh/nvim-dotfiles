@@ -33,25 +33,27 @@ local function dapUi()
             edit = "e",
             repl = "r",
         },
-        sidebar = {
-            -- You can change the order of elements in the sidebar
-            elements = {
-                -- Provide as ID strings or tables with "id" and "size" keys
-                {
-                    id = "scopes",
-                    size = 0.25, -- Can be float or integer > 1
+        layouts = {
+            {
+                -- You can change the order of elements in the sidebar
+                elements = {
+                    -- Provide as ID strings or tables with "id" and "size" keys
+                    {
+                        id = "scopes",
+                        size = 0.25, -- Can be float or integer > 1
+                    },
+                    { id = "breakpoints", size = 0.25 },
+                    { id = "stacks", size = 0.25 },
+                    { id = "watches", size = 00.25 },
                 },
-                { id = "breakpoints", size = 0.25 },
-                { id = "stacks", size = 0.25 },
-                { id = "watches", size = 00.25 },
+                size = 40,
+                position = "left", -- Can be "left", "right", "top", "bottom"
             },
-            size = 40,
-            position = "left", -- Can be "left", "right", "top", "bottom"
-        },
-        tray = {
-            elements = { "repl" },
-            size = 100,
-            position = "right", -- Can be "left", "right", "top", "bottom"
+            {
+                elements = { "repl" },
+                size = 100,
+                position = "right", -- Can be "left", "right", "top", "bottom"
+            },
         },
         floating = {
             max_height = nil, -- These can be integers or a float between 0 and 1.
@@ -94,6 +96,7 @@ local function dapConfig()
         rust = cpp,
         go = require('languages/go').dap(),
         javascript = require('languages/typescript').dap(),
+        typescript= require('languages/typescript').dap(),
     }
 end
 
@@ -101,7 +104,7 @@ _M.load = function (use)
     use {
         "rcarriga/nvim-dap-ui",
         "mfussenegger/nvim-dap",
-        "Pocco81/DAPInstall.nvim",
+        {"Pocco81/DAPInstall.nvim", branch="dev"},
         "theHamsta/nvim-dap-virtual-text",
     }
 end

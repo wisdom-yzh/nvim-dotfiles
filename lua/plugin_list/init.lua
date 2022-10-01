@@ -14,6 +14,7 @@ local plugins = {
     "plugin_list.editor",
     "plugin_list.lint",
     "plugin_list.taglist",
+    "plugin_list.term"
 }
 
 _M.load = function (use)

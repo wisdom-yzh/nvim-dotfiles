@@ -78,12 +78,15 @@ end
 -- migrate from my old .vimrc
 local function old_filetype_options()
     vim.cmd [[
+        autocmd Filetype cpp setlocal ts=2 sts=2 sw=2
         autocmd Filetype css setlocal ts=2 sts=2 sw=2
         autocmd Filetype scss setlocal ts=2 sts=2 sw=2
         autocmd Filetype html setlocal ts=2 sts=2 sw=2
         autocmd Filetype phtml setlocal ts=2 sts=2 sw=2
         autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
         autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
+        autocmd Filetype javascriptreact setlocal ts=2 sts=2 sw=2
+        autocmd Filetype typescriptreact setlocal ts=2 sts=2 sw=2
 
         au BufRead,BufNewFile *.{css,less} set ft=css
         au BufRead,BufNewFile *.{xml,ejs} set ft=html
