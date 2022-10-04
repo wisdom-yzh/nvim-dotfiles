@@ -16,8 +16,8 @@ end
 local function map_lsp_keybindings(buf_set_keymap)
     local opts = { noremap=true, silent=true }
 
-    buf_set_keymap('n', '<leader>c', ':vsplit<CR><cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', '<leader>d', ':vsplit<CR><cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', '<leader>c', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', '<leader><s-d>', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<leader><s-c>', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<leader>w', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
