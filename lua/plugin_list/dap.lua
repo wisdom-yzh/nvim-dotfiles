@@ -50,7 +50,7 @@ local function dapUi()
                 position = "left", -- Can be "left", "right", "top", "bottom"
             },
             {
-                elements = { "repl" },
+                elements = { "repl", "console" },
                 size = 100,
                 position = "right", -- Can be "left", "right", "top", "bottom"
             },

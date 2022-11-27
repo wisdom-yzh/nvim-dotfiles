@@ -46,6 +46,17 @@ _M.dap = function ()
         },
         {
             type = "go",
+            name = "Debug test function",
+            request = "launch",
+            mode = "test",
+            program = "${file}",
+            args = function ()
+                return {"-test.run", vim.fn.input("test function: ")}
+            end,
+            dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
+        },
+        {
+            type = "go",
             name = "Debug test (go.mod)",
             request = "launch",
             mode = "test",

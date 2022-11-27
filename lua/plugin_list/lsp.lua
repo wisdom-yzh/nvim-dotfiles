@@ -62,10 +62,7 @@ _M.run = function ()
         local opts = lsp_config[server.name]
         if opts ~= nil and opts.lsp ~= nil then
             opts = opts.lsp()
-        end
-
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require'cmp_nvim_lsp'.update_capabilities(capabilities)
+        end 
 
         if opts then
             -- (optional) Customize the options passed to the server
@@ -78,7 +75,7 @@ _M.run = function ()
                 ih.on_attach(client, bufnr)
             end
 
-            opts.capabilities = capabilities
+            opts.capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
             -- This setup() function is exactly the same as lspconfig's setup function.
             -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
