@@ -15,14 +15,6 @@ _M.run = function ()
     require("bufferline").setup {
         options = {
             diagnostics = "nvim_lsp",
-            offsets = {
-                {
-                    filetype = "nerdtree",
-                    text = "File Explorer",
-                    highlight = "Directory",
-                    text_align = "left",
-                }
-            },
         }
     }
     vim.cmd [[
