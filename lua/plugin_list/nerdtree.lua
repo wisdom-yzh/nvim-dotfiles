@@ -38,6 +38,13 @@ _M.run = function ()
         filters = {
             dotfiles = true,
         },
+        actions = {
+            change_dir = {
+                enable = true,
+                global = true,
+                restrict_above_cwd = false,
+            },
+        }
     })
 
     vim.cmd [[
