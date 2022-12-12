@@ -1,8 +1,6 @@
 local _M = {}
 
 local plugins = {
-    -- "plugin_list.filetree",
-    -- "plugin_list.filetree",
     "plugin_list.nerdtree",
     "plugin_list.colorschema",
     "plugin_list.fuzzy_search",
@@ -16,7 +14,8 @@ local plugins = {
     "plugin_list.editor",
     "plugin_list.lint",
     "plugin_list.taglist",
-    "plugin_list.term"
+    "plugin_list.term",
+    "plugin_list.scroll",
 }
 
 _M.load = function (use)

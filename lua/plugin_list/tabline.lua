@@ -15,6 +15,7 @@ _M.run = function ()
     require("bufferline").setup {
         options = {
             diagnostics = "nvim_lsp",
+            sort_by = 'insert_after_current'
         }
     }
     vim.cmd [[
@@ -31,7 +32,7 @@ _M.run = function ()
         nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
         nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 
-        nnoremap \d :bp<cr>:bd #<cr>
+        nnoremap \d :BufferLineCyclePrev<cr>:bd #<cr>
         nnoremap \v :vert sb #<cr>
     ]]
 end
