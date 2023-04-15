@@ -29,7 +29,7 @@ end
 
 _M.lint = function ()
     return {
-        liners = {
+        linters = {
             'cpplint',
         },
         fixers = {

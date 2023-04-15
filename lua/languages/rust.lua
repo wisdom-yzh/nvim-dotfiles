@@ -20,7 +20,7 @@ _M.lint = function ()
         let g:ale_rust_rustfmt_options = '--edition ' .. b:rust_edition
     ]]
     return {
-        liners = { "cargo" },
+        linters = { "cargo" },
         fixers = { "rustfmt" }
     }
 end

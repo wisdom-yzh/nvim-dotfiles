@@ -97,6 +97,12 @@ local function dapConfig()
         go = require('languages/go').dap(),
         javascript = require('languages/typescript').dap(),
         typescript= require('languages/typescript').dap(),
+        python = require('languages/python').dap(),
+    }
+    require('dap').adapters.python = {
+        type = 'executable';
+        command = '/home/wisdom/.virtualenvs/debugpy/bin/python';
+        args = { '-m', 'debugpy.adapter' };
     }
 end
 

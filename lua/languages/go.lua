@@ -68,7 +68,7 @@ end
 
 _M.lint = function ()
     return {
-        liners = {
+        linters = {
             "gofmt"
         },
         fixers = {

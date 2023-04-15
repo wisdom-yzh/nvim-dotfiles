@@ -46,12 +46,13 @@ _M.run = function ()
     })
 
     local lsp_config = {
-        sumneko_lua = require "languages.lua",
+        lua_ls = require "languages.lua",
         clangd = require "languages.cpp",
         tsserver = require "languages.typescript",
         gopls = require "languages.go",
         rust_analyzer = require "languages.rust",
-        jsonls = require "languages.json"
+        jsonls = require "languages.json",
+        pyright = require "languages.python",
     }
 
     install_lsp_servers(lsp_config, lsp_installer)
@@ -62,7 +63,7 @@ _M.run = function ()
         local opts = lsp_config[server.name]
         if opts ~= nil and opts.lsp ~= nil then
             opts = opts.lsp()
-        end 
+        end
 
         if opts then
             -- (optional) Customize the options passed to the server
