@@ -7,15 +7,28 @@ _M.load = function (use)
     }
 end
 
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+end
+
 _M.run = function ()
     require "toggleterm".setup {
         size = function()
-            return vim.o.columns * 0.3
+            return 40
         end,
-        direction = "vertical",
+        direction = "horizontal",
+        auto_scroll = false,
+        start_in_insert = true,
+        winbar = {
+            enabled = false,
+        },
     }
 
     vim.cmd [[
+        autocmd! TermOpen term://* lua set_terminal_keymaps()
+
         autocmd TermEnter term://*toggleterm#*
             \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 
