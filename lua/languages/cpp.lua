@@ -28,9 +28,11 @@ _M.dap = function ()
 end
 
 _M.lint = function ()
+    vim.g.ale_c_clangformat_use_local_file = 1
+
     return {
         linters = {
-            'cpplint',
+            'clangtidy',
         },
         fixers = {
             'clang-format'
