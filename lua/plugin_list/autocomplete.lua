@@ -68,15 +68,19 @@ _M.run = function ()
         }),
 
         mapping = cmp_keybindings(cmp),
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
+        },
         formatting = {
             format = lspkind.cmp_format({
-            with_text = true, -- do not show text alongside icons
-            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            before = function (entry, vim_item)
-                -- Source 显示提示来源
-                vim_item.menu = "["..string.upper(entry.source.name).."]"
-                return vim_item
-            end
+                mode = "text",
+                maxwidth = 50,
+                ellipsis_char = "...",
+                before = function (entry, vim_item)
+                    vim_item.menu = "["..string.upper(entry.source.name).."]"
+                    return vim_item
+                end
             })
         },
     }

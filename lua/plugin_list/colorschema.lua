@@ -8,10 +8,10 @@ _M.load = function (use)
 end
 
 local color_schemas = {
+    "tokyonight-night",
     "tokyonight",
+    "tokyonight-moon",
     "tokyonight-day",
-    --"tokyonight-moon",
-    --"tokyonight-night",
 }
 local color_idx = 1
 function SWITCH_COLORSCHEMA()
@@ -21,7 +21,7 @@ end
 
 _M.run = function ()
     vim.cmd [[
-        colorscheme tokyonight
+        colorscheme tokyonight-night
         nnoremap <silent><C-x> <Cmd>:lua SWITCH_COLORSCHEMA()<CR>
     ]]
 end
