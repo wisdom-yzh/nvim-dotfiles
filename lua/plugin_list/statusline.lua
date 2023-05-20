@@ -1,4 +1,3 @@
-local vim = vim
 local _M = {}
 
 _M.load = function (use)
@@ -14,16 +13,13 @@ _M.run = function ()
             lualine_a = {
                 {
                     'diagnostics',
-
                     -- Table of diagnostic sources, available sources are:
                     --   'nvim_lsp', 'nvim_diagnostic', 'coc', 'ale', 'vim_lsp'.
                     -- or a function that returns a table as such:
                     --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-                    sources = { 'nvim_lsp', 'ale' },
-
+                    sources = { 'ale' },
                     -- Displays diagnostics for the defined severity types
                     sections = { 'error', 'warn', 'info', 'hint' },
-
                     diagnostics_color = {
                         -- Same values as the general color option can be used here.
                         error = 'DiagnosticError', -- Changes diagnostics' error color.
@@ -36,6 +32,9 @@ _M.run = function ()
                     update_in_insert = false, -- Update diagnostics in insert mode.
                     always_visible = false,   -- Show diagnostics even if there are none.
                 }
+            },
+            lualine_b = {
+                'branch', 'diff', 'filename',
             },
             lualine_c = {
                 'lsp_progress'
