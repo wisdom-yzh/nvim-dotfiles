@@ -16,7 +16,7 @@ end
 _M.run = function ()
     require "toggleterm".setup {
         size = function()
-            return 40
+            return 20
         end,
         direction = "horizontal",
         auto_scroll = false,

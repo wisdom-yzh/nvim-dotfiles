@@ -77,49 +77,30 @@ local function dapUi()
     end
 end
 
-local function dapInstall()
-    local dap_install = require("dap-install")
-    dap_install.setup({
-        installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-    })
-    local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
-    for _, debugger in ipairs(dbg_list) do
-        dap_install.config(debugger)
-    end
-end
-
-local function dapConfig()
-    local cpp = require('languages/cpp').dap()
-    require('dap').configurations = {
-        c = cpp,
-        cpp = cpp,
-        rust = cpp,
-        go = require('languages/go').dap(),
-        javascript = require('languages/typescript').dap(),
-        typescript= require('languages/typescript').dap(),
-        python = require('languages/python').dap(),
-    }
-    require('dap').adapters.python = {
-        type = 'executable';
-        command = '/home/wisdom/.virtualenvs/debugpy/bin/python';
-        args = { '-m', 'debugpy.adapter' };
-    }
-end
-
 _M.load = function (use)
     use {
-        "rcarriga/nvim-dap-ui",
+        "williamboman/mason.nvim",
         "mfussenegger/nvim-dap",
-        {"Pocco81/DAPInstall.nvim", branch="dev"},
+        "jay-babu/mason-nvim-dap.nvim",
+
+        "rcarriga/nvim-dap-ui",
         "theHamsta/nvim-dap-virtual-text",
     }
 end
 
 _M.run = function ()
+    require("mason").setup()
+    require("mason-nvim-dap").setup({
+        ensure_installed = { "delve", "python", "cppdbg", "node2", "bash" },
+        automatic_installation = true,
+        handlers = {
+            function (config)
+                require('mason-nvim-dap').default_setup(config)
+            end,
+        }
+    })
     dapUi()
     dapKeyBindings()
-    dapInstall()
-    dapConfig()
 end
 
 return _M

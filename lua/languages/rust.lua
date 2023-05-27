@@ -4,10 +4,6 @@ _M.lsp = function ()
     return {}
 end
 
-_M.dap = function ()
-    return require("languages/cpp").dap
-end
-
 _M.lint = function ()
     vim.cmd [[
         let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')

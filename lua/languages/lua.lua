@@ -35,10 +35,6 @@ _M.lsp = function ()
     }
 end
 
-_M.dap = function ()
-    return {}
-end
-
 _M.lint = function ()
     return {
         linters = {},

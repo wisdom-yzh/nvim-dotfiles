@@ -74,7 +74,7 @@ _M.run = function ()
         },
         formatting = {
             format = lspkind.cmp_format({
-                mode = "text",
+                mode = "symbol_text",
                 maxwidth = 50,
                 ellipsis_char = "...",
                 before = function (entry, vim_item)
