@@ -1,6 +1,9 @@
 local _M = {}
 
 _M.lsp = function ()
+    vim.cmd [[
+        nmap <leader>h :ClangdSwitchSourceHeader<CR>
+    ]]
     return {}
 end
 

@@ -39,7 +39,10 @@ _M.run = function ()
             lualine_c = {
                 'lsp_progress'
             }
-	    }
+	    },
+        options = {
+            theme = 'vscode'
+        }
     })
 end
 
