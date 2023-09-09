@@ -55,7 +55,10 @@ _M.load = function (use)
     use 'rafamadriz/friendly-snippets'
     -- lspkind
     use 'onsails/lspkind-nvim'
+    -- signature
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
 end
+
 
 _M.run = function ()
     local lspkind = require('lspkind')
@@ -84,6 +87,7 @@ _M.run = function ()
         },
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
+            { name = 'nvim_lsp_signature_help' },
             { name = 'vsnip' },
         }, {
             { name = 'buffer' },

@@ -13,9 +13,9 @@ local plugins = {
     "plugin_list.dap",
     "plugin_list.editor",
     "plugin_list.lint",
-    "plugin_list.taglist",
     "plugin_list.term",
     "plugin_list.scroll",
+    "plugin_list.unit_test",
 }
 
 _M.load = function (use)

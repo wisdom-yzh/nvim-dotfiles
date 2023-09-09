@@ -137,6 +137,38 @@ _M.run = function ()
                     },
                 }
                 require('mason-nvim-dap').default_setup(config)
+            end,
+            delve = function (config)
+                config.configurations = {
+                    {
+                        type = "delve",
+                        name = "Debug",
+                        request = "launch",
+                        showLog = false,
+                        program = "${file}",
+                        dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
+                    },
+                    {
+                        type = "delve",
+                        name = "Debug test",
+                        request = "launch",
+                        mode = "test",
+                        program = "./${relativeFileDirname}",
+                        dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
+                    },
+                    {
+                        type = "delve",
+                        name = "Debug test function",
+                        request = "launch",
+                        mode = "test",
+                        program = "./${relativeFileDirname}",
+                        args = function ()
+                            return {"-test.run", vim.fn.input("test function: ")}
+                        end,
+                        dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
+                    },
+                }
+                require('mason-nvim-dap').default_setup(config)
             end
         }
     })
