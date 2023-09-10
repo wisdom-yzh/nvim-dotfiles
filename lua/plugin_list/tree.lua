@@ -7,10 +7,29 @@ _M.load = function (use)
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-
     }
 end
+
+local function on_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  vim.keymap.set('n', 'p',       api.node.navigate.parent,        opts('up'))
+  vim.keymap.set('n', '<C-j>',   api.node.navigate.sibling.next,  opts('next'))
+  vim.keymap.set('n', '<C-k>',   api.node.navigate.sibling.prev,  opts('prev'))
+  vim.keymap.set('n', '<M-k>',   api.node.navigate.sibling.first, opts('next'))
+  vim.keymap.set('n', '<M-j>',   api.node.navigate.sibling.last,  opts('prev'))
+  vim.keymap.set('n', 's',       api.node.open.vertical,          opts('vsplit'))
+  vim.keymap.set('n', 'u',       api.tree.change_root_to_parent,  opts('dir up'))
+end
+
 
 _M.run = function ()
     -- disable netrw at the very start of your init.lua (strongly advised)
@@ -20,17 +39,9 @@ _M.run = function ()
 
     require("nvim-tree").setup({
         sort_by = "case_sensitive",
+        on_attach = on_attach,
         view = {
             adaptive_size = true,
-            mappings = {
-                list = {
-                    { key = "u", action = "dir_up" },
-                    { key = "s", action = "vsplit" },
-                    { key = "p", action = "parent_node" },
-                    { key = "<C-j>", action = "next_sibling" },
-                    { key = "<C-k>", action = "prev_sibling" },
-                },
-            },
         },
         renderer = {
             group_empty = true,

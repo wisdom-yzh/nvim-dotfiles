@@ -1,7 +1,7 @@
 local _M = {}
 
 local plugins = {
-    "plugin_list.nerdtree",
+    "plugin_list.tree",
     "plugin_list.colorschema",
     "plugin_list.fuzzy_search",
     "plugin_list.syntax_highlight",
