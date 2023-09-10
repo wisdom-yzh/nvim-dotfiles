@@ -42,7 +42,7 @@ _M.run = function ()
 
     vim.cmd  [[ 
         nnoremap <leader>t :lua require("neotest").run.run()<CR>
-        nnoremap <leader>T :lua require("neotest").run.run()<CR>
+        nnoremap <leader>T :lua require("neotest").run.run(vim.fn.expand("%"))<CR>
     ]]
 end
 
