@@ -57,12 +57,15 @@ _M.load = function (use)
     use 'onsails/lspkind-nvim'
     -- signature
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
+    -- dictionary
+    use 'uga-rosa/cmp-dictionary'
 end
 
 
 _M.run = function ()
     local lspkind = require('lspkind')
     local cmp = require('cmp')
+    local dict = require("cmp_dictionary")
 
     cmp.setup {
         completion = {
@@ -86,9 +89,14 @@ _M.run = function ()
             end,
         },
         sources = cmp.config.sources({
+            { name = 'vsnip' },
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
-            { name = 'vsnip' },
+            {
+                name = "dictionary",
+                keyword_length = 3,
+            },
+
         }, {
             { name = 'buffer' },
             { name = 'path' }
@@ -129,6 +137,24 @@ _M.run = function ()
         }, {
             { name = 'cmdline' }
         })
+    })
+
+    -- Set up dict cmp
+    dict.setup({
+        -- The following are default values.
+        exact = 2,
+        first_case_insensitive = false,
+        document = false,
+        document_command = "wn %s -over",
+        sqlite = false,
+        max_items = -1,
+        capacity = 5,
+        debug = false,
+    })
+    dict.switcher({
+        spelllang = {
+            en = "~/.config/nvim/assets/en.dict",
+        },
     })
 end
 

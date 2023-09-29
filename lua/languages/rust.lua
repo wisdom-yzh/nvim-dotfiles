@@ -1,7 +1,31 @@
 local _M = {}
 
 _M.lsp = function ()
-    return {}
+    return {
+        settings = {
+            ["rust-analyzer"] = {
+                imports = {
+                    granularity = {
+                        group = "module",
+                    },
+                    prefix = "self",
+                },
+                cargo = {
+                    buildScripts = {
+                        enable = true,
+                    },
+                },
+                procMacro = {
+                    enable = true,
+                },
+                diagnostics = {
+                    experimental = {
+                        enable = true
+                    }
+                }
+            },
+        },
+    }
 end
 
 _M.lint = function ()
