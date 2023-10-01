@@ -19,7 +19,6 @@ _M.load = function (use)
 
         'neovim/nvim-lspconfig',
         "williamboman/mason-lspconfig.nvim",
-        'lvimuser/lsp-inlayhints.nvim',
 
     }
 end
@@ -59,12 +58,11 @@ _M.run = function ()
             end
             opts.capabilities = require 'cmp_nvim_lsp'.default_capabilities()
             opts.on_attach = function (client, bufnr)
-                 local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-                 map_lsp_keybindings(buf_set_keymap)
-                 -- inlay-hints
-                 local ih = require "lsp-inlayhints"
-                 ih.setup()
-                 ih.on_attach(client, bufnr, false)
+                local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                map_lsp_keybindings(buf_set_keymap)
+                if client.server_capabilities.inlayHintProvider then
+                    vim.lsp.inlay_hint(bufnr, true)
+                end
             end
             lsp_config[svr].setup(opts)
         end,
