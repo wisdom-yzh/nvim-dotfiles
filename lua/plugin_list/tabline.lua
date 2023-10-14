@@ -5,7 +5,7 @@ _M.load = function (use)
     use {
         "akinsho/bufferline.nvim",
         requires = {
-             'kyazdani42/nvim-web-devicons',
+             'nvim-tree/nvim-web-devicons',
         },
     }
 end
