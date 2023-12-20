@@ -32,7 +32,7 @@ _M.run = function ()
         -- your neotest config here
         adapters = {
             require("neotest-go")({
-                args = { "-timeout=60s", "-race" }
+                args = { "-timeout=60s", "-race", "-gcflags=\"all=-N -l\"" }
             }),
             require("neotest-rust") {
                 args = { "--no-capture" },
