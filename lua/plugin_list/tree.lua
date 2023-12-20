@@ -44,6 +44,11 @@ _M.run = function ()
         view = {
             adaptive_size = true,
         },
+        update_focused_file = {
+            enable = true,
+            update_root = true,
+            ignore_list = {},
+        },
         renderer = {
             group_empty = true,
         },
