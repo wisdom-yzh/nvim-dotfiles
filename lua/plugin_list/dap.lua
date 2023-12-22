@@ -145,7 +145,7 @@ _M.run = function ()
                         name = "Debug",
                         request = "launch",
                         showLog = false,
-                        program = "./${relativeFileDirname}"
+                        program = "./${relativeFileDirname}",
                         dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
                     },
                     {
