@@ -17,11 +17,6 @@ _M.lsp = function ()
                 },
                 procMacro = {
                     enable = true,
-                },
-                diagnostics = {
-                    experimental = {
-                        enable = true
-                    }
                 }
             },
         },
