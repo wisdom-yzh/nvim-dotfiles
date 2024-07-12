@@ -141,20 +141,12 @@ _M.run = function ()
 
     -- Set up dict cmp
     dict.setup({
-        -- The following are default values.
-        exact = 2,
-        first_case_insensitive = false,
-        document = false,
-        document_command = "wn %s -over",
-        sqlite = false,
-        max_items = -1,
-        capacity = 5,
-        debug = false,
-    })
-    dict.switcher({
-        spelllang = {
-            en = "~/.config/nvim/assets/en.dict",
-        },
+        paths = { "~/.config/nvim/assets/en.dict" },
+        exact_length = 2,
+        first_case_insensitive = true,
+        document = {
+            enable = false,
+        }
     })
 end
 

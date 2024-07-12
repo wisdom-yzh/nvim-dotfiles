@@ -8,7 +8,6 @@ _M.lsp = function ()
                     granularity = {
                         group = "module",
                     },
-                    prefix = "self",
                 },
                 cargo = {
                     buildScripts = {

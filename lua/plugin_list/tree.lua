@@ -45,7 +45,7 @@ _M.run = function ()
             adaptive_size = true,
         },
         update_focused_file = {
-            enable = true,
+            enable = false,
             update_root = true,
             ignore_list = {},
         },
