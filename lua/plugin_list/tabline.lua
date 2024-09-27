@@ -14,7 +14,7 @@ _M.run = function ()
     vim.opt.termguicolors = true
     require("bufferline").setup {
         options = {
-            -- diagnostics = "nvim_lsp",
+            diagnostics = "nvim_lsp",
             sort_by = 'insert_after_current'
         },
     }

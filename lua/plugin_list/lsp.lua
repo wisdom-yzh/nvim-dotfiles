@@ -39,7 +39,7 @@ _M.run = function ()
     local server_configs = {
         lua_ls = require "languages.lua",
         clangd = require "languages.cpp",
-        tsserver = require "languages.typescript",
+        ts_ls = require "languages.typescript",
         gopls = require "languages.go",
         rust_analyzer = require "languages.rust",
         jsonls = require "languages.json",
@@ -61,7 +61,7 @@ _M.run = function ()
                 local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
                 map_lsp_keybindings(buf_set_keymap)
                 if client.server_capabilities.inlayHintProvider then
-                    vim.lsp.inlay_hint(bufnr, true)
+                    vim.lsp.inlay_hint.enable()
                 end
             end
             lsp_config[svr].setup(opts)
@@ -72,7 +72,7 @@ _M.run = function ()
         ensure_installed = {
             "lua_ls",
             "clangd",
-            "tsserver",
+            "ts_ls",
             "gopls",
             "rust_analyzer",
             "jsonls",
