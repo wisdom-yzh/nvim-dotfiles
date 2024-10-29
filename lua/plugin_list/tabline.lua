@@ -33,7 +33,8 @@ _M.run = function ()
         nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 
         nnoremap \d :BufferLineCyclePrev<cr>:bd #<cr>
-        nnoremap \v :vert sb #<cr>
+        nnoremap \v :vertical sb #<cr>
+        nnoremap \h :horizontal sb #<cr>
     ]]
 end
 

@@ -8,6 +8,8 @@ local function map_lsp_keybindings(buf_set_keymap)
     buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', '<leader><s-d>', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<leader><s-c>', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<leader><c-c>', '<cmd> Lspsaga incoming_calls<CR>', opts)
+    buf_set_keymap('n', '<leader><c-v>', '<cmd> Lspsaga outgoing_calls<CR>', opts)
     buf_set_keymap('n', '<leader>w', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
@@ -19,7 +21,7 @@ _M.load = function (use)
 
         'neovim/nvim-lspconfig',
         "williamboman/mason-lspconfig.nvim",
-
+        'nvimdev/lspsaga.nvim',
     }
 end
 
@@ -82,6 +84,15 @@ _M.run = function ()
             "yamlls",
         },
     }
+
+    require('lspsaga').setup({
+        lightbulb = {
+            enable = false,
+        },
+        symbol_in_winbar = {
+            enable = false,
+        },
+    })
 end
 
 return _M
