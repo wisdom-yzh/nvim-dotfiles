@@ -92,14 +92,13 @@ _M.run = function ()
             { name = 'vsnip' },
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
-            {
-                name = "dictionary",
-                keyword_length = 3,
-            },
-
         }, {
             { name = 'buffer' },
-            { name = 'path' }
+            { name = 'path' },
+            {
+                name = "dictionary",
+                keyword_length = 2,
+            },
         }),
 
         mapping = cmp_keybindings(cmp),
@@ -145,8 +144,9 @@ _M.run = function ()
         exact_length = 2,
         first_case_insensitive = true,
         document = {
-            enable = false,
-        }
+            enable = true,
+            command = { "wn", "${label}", "-over" },
+        },
     })
 end
 
