@@ -61,6 +61,9 @@ _M.run = function ()
                 global = true,
                 restrict_above_cwd = false,
             },
+        },
+        diagnostics = {
+            enable = true,
         }
     })
 
@@ -70,6 +73,10 @@ _M.run = function ()
         map <leader><leader> :NvimTreeToggle<CR>
         map <leader>. :NvimTreeFindFile<CR>
         map <leader>m :SymbolsOutline<CR>
+        
+        nnoremap \d :bd<cr>
+        nnoremap \v :vertical sb #<cr>
+        nnoremap \h :horizontal sb #<cr>
     ]]
 end
 
