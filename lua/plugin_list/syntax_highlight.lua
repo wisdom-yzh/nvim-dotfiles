@@ -25,8 +25,10 @@ _M.run = function ()
     }
 
     vim.wo.foldmethod = 'expr'
-    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.wo.foldlevel = 1
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo.foldlevel = 99
+    -- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+    -- vim.wo.foldmethod = 'expr'
 end
 
 return _M

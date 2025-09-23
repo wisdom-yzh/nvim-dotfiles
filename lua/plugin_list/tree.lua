@@ -4,7 +4,6 @@ local _M = {}
 _M.load = function (use)
     use {
         'nvim-tree/nvim-tree.lua',       -- file tree
-        'simrat39/symbols-outline.nvim', -- symbol tree
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
@@ -67,12 +66,9 @@ _M.run = function ()
         }
     })
 
-    require("symbols-outline").setup()
-
     vim.cmd [[
         map <leader><leader> :NvimTreeToggle<CR>
         map <leader>. :NvimTreeFindFile<CR>
-        map <leader>m :SymbolsOutline<CR>
         
         nnoremap \d :bd<cr>
         nnoremap \v :vertical sb #<cr>

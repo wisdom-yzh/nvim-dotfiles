@@ -29,7 +29,7 @@ local global_options = {
     encoding = "utf-8",
     fileencodings = "ucs-bom,utf-8,cp936",
     fileencoding = "utf-8",
-    termencoding = "utf-8",
+    -- termencoding = "utf-8",
     autoindent = true,
     cindent = true,
     expandtab = true,
@@ -37,6 +37,7 @@ local global_options = {
     softtabstop = 4,
     shiftwidth = 4,
     t_ut = "",
+    cmdheight = 0,
 }
 
 local global_vars = {

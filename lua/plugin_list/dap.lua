@@ -171,6 +171,74 @@ _M.run = function ()
                     },
                 }
                 require('mason-nvim-dap').default_setup(config)
+            end,
+            python = function (config)
+                local venv_path = os.getenv('VIRTUAL_ENV') or os.getenv('CONDA_PREFIX')
+                config.configurations = {
+                    {
+                        -- The first three options are required by nvim-dap
+                        type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+                        request = 'launch',
+                        name = 'Python: Launch file',
+                        program = '${file}', -- This configuration will launch the current file if used.
+                        -- venv on Windows uses Scripts instead of bin
+                        pythonPath = venv_path
+                            and ((vim.fn.has('win32') == 1 and venv_path .. '/Scripts/python') or venv_path .. '/bin/python')
+                            or nil,
+                        console = 'integratedTerminal',
+                    },
+                    {
+                        type = 'python',
+                        request = 'launch',
+                        name = 'Run pytest - 当前文件',
+                        module = 'pytest',
+                        args = { '${file}' },
+                        pythonPath = function()
+                            local cwd = vim.fn.getcwd()
+                            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+                                return cwd .. '/venv/bin/python'
+                            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+                                return cwd .. '/.venv/bin/python'
+                            else
+                                return '/usr/bin/python3'
+                            end
+                        end,
+                    },
+                    {
+                        type = 'python',
+                        request = 'launch',
+                        name = 'Run pytest - 当前函数',
+                        module = 'pytest',
+                        args = function()
+                            local file = vim.fn.expand('%:p')
+                            local line = vim.fn.line('.')
+                            -- 获取当前函数名
+                            local func_name = vim.fn.searchpairpos('def\\s\\+\\([a-zA-Z_0-9]\\+\\)\\s*(', '', ')', 'bW')
+                            if func_name[1] > 0 then
+                                local func_line = func_name[1]
+                                local func_text = vim.fn.getline(func_line)
+                                local _, _, name = string.find(func_text, 'def\\s\\+\\([a-zA-Z_0-9]\\+\\)\\s*(')
+                                if name then
+                                    return { file .. '::' .. name }
+                                end
+                            end
+                            -- 如果没找到函数名，就只运行文件
+                            return { file }
+                        end,
+                        pythonPath = function()
+                            -- 虚拟环境检测逻辑
+                            local cwd = vim.fn.getcwd()
+                            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+                                return cwd .. '/venv/bin/python'
+                            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+                                return cwd .. '/.venv/bin/python'
+                            else
+                                return '/usr/bin/python3'
+                            end
+                        end,
+                    }
+                }
+                require('mason-nvim-dap').default_setup(config)
             end
         }
     })

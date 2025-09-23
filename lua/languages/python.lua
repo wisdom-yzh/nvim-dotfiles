@@ -5,7 +5,14 @@ _M.lsp = function ()
 end
 
 _M.lint = function ()
-    return {}
+    return {
+        linters = {
+            "ruff"
+        },
+        fixers = {
+            'ruff', 'isort', 'black'
+        }
+    }
 end
 
 return _M

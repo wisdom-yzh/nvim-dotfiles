@@ -19,7 +19,8 @@ _M.run = function ()
     vim.g.ale_keep_list_window_open = 0
     vim.g.ale_set_quickfix = 0
     vim.g.ale_set_loclist = 1
-    vim.g.ale_lint_on_text_changed = 'never'
+    vim.g.ale_lint_on_save = 1
+    vim.g.ale_python_ruff_options = '--fix --exit-non-zero-on-fix'
     vim.g.ale_fix_on_save = 1
 
     local ts = require("languages/typescript").lint()
@@ -28,6 +29,7 @@ _M.run = function ()
     local go = require("languages/go").lint()
     local lua = require("languages/lua").lint()
     local rust = require("languages/rust").lint()
+    local python = require("languages/python").lint()
 
     vim.g.ale_linters = {
         javascript = ts.linters,
@@ -40,6 +42,7 @@ _M.run = function ()
         c = cpp.linters,
         cpp = cpp.linters,
         lua = lua.linters,
+        python = python.linters,
     }
 
     vim.g.ale_fixers = {
@@ -53,6 +56,7 @@ _M.run = function ()
         c = cpp.fixers,
         cpp = cpp.fixers,
         lua = lua.fixers,
+        python = python.fixers,
         ["*"] = {"remove_trailing_lines", "trim_whitespace"},
     }
 end

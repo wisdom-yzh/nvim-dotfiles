@@ -9,7 +9,8 @@ _M.load = function (use)
             "antoinemadec/FixCursorHold.nvim",
 
             "nvim-neotest/neotest-go",
-            "rouge8/neotest-rust"
+            "rouge8/neotest-rust",
+            "nvim-neotest/neotest-python",
             -- Your other test adapters here
         }
     }
@@ -34,9 +35,21 @@ _M.run = function ()
             require("neotest-go")({
                 args = { "-timeout=90s", "-race", "-gcflags=\"all=-N -l\"" }
             }),
-            require("neotest-rust") {
+            require("neotest-rust")({
                 args = { "--no-capture" },
-            }
+            }),
+            require("neotest-python")({
+                args = {"--log-level", "DEBUG"},
+                -- Runner to use. Will use pytest if available by default.
+                -- Can be a function to return dynamic value.
+                runner = "pytest",
+                -- Custom python path for the runner.
+                -- Can be a string or a list of strings.
+                -- Can also be a function to return dynamic value.
+                -- If not provided, the path will be inferred by checking for 
+                -- virtual envs in the local directory and for Pipenev/Poetry configs
+                python = "venv/bin/python",
+            }),
         },
     })
 

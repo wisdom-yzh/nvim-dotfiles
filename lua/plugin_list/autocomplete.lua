@@ -144,8 +144,8 @@ _M.run = function ()
         exact_length = 2,
         first_case_insensitive = true,
         document = {
-            enable = true,
-            command = { "wn", "${label}", "-over" },
+            enable = false,
+            -- command = { "wn", "${label}", "-over" },
         },
     })
 end
