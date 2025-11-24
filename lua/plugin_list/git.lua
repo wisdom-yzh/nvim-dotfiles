@@ -18,7 +18,7 @@ _M.run = function ()
     vim.cmd [[
         nmap <leader>gg :Git<CR>
         nmap <leader>gl :Gclog %<CR>
-        nmap <leader>gb :Git blame<CR>
+        nmap <leader>gb :Git blame<CR>:Lspsaga winbar_toggle<CR>
     ]]
 end
 

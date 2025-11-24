@@ -90,6 +90,10 @@ _M.run = function ()
         symbol_in_winbar = {
             enable = true,
         },
+        implement = {
+            enable = true,
+            sign = true,
+        },
         outline = {
             win_width = 60,
         }
