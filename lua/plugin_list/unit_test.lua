@@ -8,7 +8,8 @@ _M.load = function (use)
             "nvim-treesitter/nvim-treesitter",
             "antoinemadec/FixCursorHold.nvim",
 
-            "nvim-neotest/neotest-go",
+            -- "nvim-neotest/neotest-go",
+            "fredrikaverpil/neotest-golang",
             "rouge8/neotest-rust",
             "nvim-neotest/neotest-python",
             -- Your other test adapters here
@@ -32,8 +33,11 @@ _M.run = function ()
     require "neotest".setup({
         -- your neotest config here
         adapters = {
-            require("neotest-go")({
-                args = { "-timeout=90s", "-race", "-gcflags=\"all=-N -l\"" }
+            -- require("neotest-go")({
+            --     args = { "-timeout=90s", "-race", "-gcflags=\"all=-N -l\"" }
+            -- }),
+            require("neotest-golang")({
+                go_test_args = { "-timeout=90s", "-race", "-gcflags=\\'all=-N -l\\'" }
             }),
             require("neotest-rust")({
                 args = { "--no-capture" },

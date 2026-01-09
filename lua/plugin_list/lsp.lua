@@ -46,7 +46,7 @@ _M.run = function ()
         gopls = require "languages.go",
         rust_analyzer = require "languages.rust",
         jsonls = require "languages.json",
-        pyright = require "languages.python",
+        ty = require "languages.python",
     }
 
     mason_lsp.setup {
@@ -58,7 +58,7 @@ _M.run = function ()
             "gopls",
             "rust_analyzer",
             "jsonls",
-            "pyright",
+            "ty",
             "bashls",
             "dockerls",
             "yamlls",

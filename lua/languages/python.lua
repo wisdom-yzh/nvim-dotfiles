@@ -1,7 +1,13 @@
 local _M = {}
 
 _M.lsp = function ()
-    return {}
+    return {
+        settings = {
+            ty = {
+                -- ty language server settings go here
+            }
+        }
+    }
 end
 
 _M.lint = function ()

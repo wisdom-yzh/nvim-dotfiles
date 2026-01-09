@@ -6,8 +6,8 @@ _M.load = function (use)
 end
 
 local color_schemas = {
+    "light",
     "dark",
-    "light"
 }
 
 local color_idx = 1
